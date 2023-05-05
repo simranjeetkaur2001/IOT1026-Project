@@ -1,4 +1,4 @@
-﻿namespace MinotaurLabyrinth
+namespace MinotaurLabyrinth
 {
     public static class RandomNumberGenerator
     {
