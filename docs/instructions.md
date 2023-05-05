@@ -29,7 +29,7 @@ To accomplish this feat, follow these steps:
 6. **Test and iterate on your design**: Hone your creation by testing and refining the player's experience within your room. Ensure it complements the labyrinth's intricate tapestry, adding depth and wonder to the hero's journey.
 
 ## How to Submit Your Assessment
-Submit a link to the GitHub repo containing your code and provide a summary description of your Room in the Moodle comments box.
+Submit a link to the GitHub repo containing your code and provide a summary description of your `Room` in the `README.md` file.
 
 ## Task 2 - Monster
 In the depths of the labyrinth, not only does the hero need to navigate through the treacherous rooms, but they must also confront an array of monstrous creatures that lurk in the darkness. As the labyrinth evolves, so do the monsters that inhabit it. Now, it is your task to breathe life into a terrifying new monster, one that will strike fear into the heart of any hero who dares to enter its domain.
@@ -47,7 +47,7 @@ To create a monster of your own design, follow these steps:
 6. **Adjust game balance**: Once your monster is implemented, you may need to adjust the game balance to account for the increased difficulty. This could involve modifying the hero's attributes or changing the layout of the labyrinth.
 
 ## How to Submit Your Assessment
-Submit a link to the GitHub repo containing your code and provide a summary description of your Monster in the Moodle comments box.
+Submit a link to the GitHub repo containing your code and provide a summary description of your `Monster` in the `README.md` file.
 
 # Grading Rubric
 

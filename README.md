@@ -10,7 +10,7 @@
 </p>
 
 # IOT1026-Project
-Write a description of the project here and don't forget to update the badges.  
+Write a description of your `Room` and `Monster` class here.
 
 [Assignment Instructions](docs/instructions.md)  
 [How to start coding](docs/how-to-use.md)  
