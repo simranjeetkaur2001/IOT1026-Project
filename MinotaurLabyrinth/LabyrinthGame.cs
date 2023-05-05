@@ -29,9 +29,9 @@
                 Console.Clear();
                 if (Hero.IsAlive) // Player did not quit the game
                 {
+                    Location currentLocation = Hero.Location;
                     command.Execute(Hero, Map);
                     CurrentRoom.Activate(Hero, Map);
-                    Location currentLocation = Hero.Location;
                     // If the room interaction moves the player
                     // Activate the room the player has been moved to
                     while (currentLocation != Hero.Location)

@@ -1,13 +1,24 @@
 ﻿namespace MinotaurLabyrinth
 {
+    /// <summary>
+    /// Represents a pit room, which contains a dangerous pit that the hero can fall into.
+    /// </summary>
     public class Pit : Room
     {
         static Pit()
         {
             RoomFactory.Instance.Register(RoomType.Pit, () => new Pit());
         }
+
+        /// <inheritdoc/>
         public override RoomType Type { get; } = RoomType.Pit;
+
+        /// <inheritdoc/>
         public override bool IsActive { get; protected set; } = true;
+
+        /// <summary>
+        /// Activates the pit, causing the hero to potentially fall in and face consequences.
+        /// </summary>
         public override void Activate(Hero hero, Map map)
         {
             if (IsActive)
@@ -40,30 +51,36 @@
             }
         }
 
+        /// <inheritdoc/>
         public override DisplayDetails Display()
         {
             return IsActive ? new DisplayDetails($"[{Type.ToString()[0]}]", ConsoleColor.Red)
                             : base.Display();
         }
 
+        /// <summary>
+        /// Displays sensory information about the pit, based on the hero's distance from it.
+        /// </summary>
+        /// <param name="hero">The hero sensing the pit.</param>
+        /// <param name="heroDistance">The distance between the hero and the pit room.</param>
+        /// <returns>Returns true if a message was displayed; otherwise, false.</returns>
         public override bool DisplaySense(Hero hero, int heroDistance)
         {
             if (!IsActive)
             {
-                base.DisplaySense(hero, heroDistance);
+                if (base.DisplaySense(hero, heroDistance))
+                {
+                    return true;
+                }
                 if (heroDistance == 0)
                 {
                     ConsoleHelper.WriteLine("You shudder as you recall your near death experience with the now defunct pit in this room.", ConsoleColor.DarkGray);
+                    return true;
                 }
             }
-            if (heroDistance == 1 && IsActive)
+            else if (heroDistance == 1 || heroDistance == 2)
             {
-                ConsoleHelper.WriteLine("You feel a draft. There is a pit in a nearby room!", ConsoleColor.DarkGray);
-                return true;
-            }
-            else if (heroDistance == 2 && IsActive)
-            {
-                ConsoleHelper.WriteLine("Your intuition tells you that something dangerous is nearby", ConsoleColor.DarkGray);
+                ConsoleHelper.WriteLine(heroDistance == 1 ? "You feel a draft. There is a pit in a nearby room!" : "Your intuition tells you that something dangerous is nearby", ConsoleColor.DarkGray);
                 return true;
             }
             return false;
