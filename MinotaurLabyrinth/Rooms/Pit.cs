@@ -1,0 +1,72 @@
+﻿namespace MinotaurLabyrinth
+{
+    public class Pit : Room
+    {
+        static Pit()
+        {
+            RoomFactory.Instance.Register(RoomType.Pit, () => new Pit());
+        }
+        public override RoomType Type { get; } = RoomType.Pit;
+        public override bool IsActive { get; protected set; } = true;
+        public override void Activate(Hero hero, Map map)
+        {
+            if (IsActive)
+            {
+                ConsoleHelper.WriteLine("You walk into the room and the floor gives way revealing a pit of sharp spikes adorned with other adventurers!", ConsoleColor.Red);
+                // Could update these probabilities to be based off the hero attributes
+                double chanceOfSuccess = hero.HasSword ? 0.25 : 0.75;
+
+                if (hero.HasSword)
+                {
+                    ConsoleHelper.WriteLine("The sword goes flying as your wildly flail your arms desperately trying to get hold of the pit's edge.", ConsoleColor.DarkMagenta);
+                    hero.HasSword = false;
+                }
+                else
+                {
+                    ConsoleHelper.WriteLine("You wildly flail your arms desperately trying to get hold of the pit's edge.", ConsoleColor.DarkMagenta);
+                }
+
+                if (RandomNumberGenerator.NextDouble() < chanceOfSuccess)
+                {
+                    IsActive = false;
+                    ConsoleHelper.WriteLine("You manage to grab the side of the pit and pull yourself onto safe ground", ConsoleColor.Green);
+                    ConsoleHelper.WriteLine("Looking around, you find a mechanism that closes the depresses the spikes in the pit. This room is now safe.", ConsoleColor.Green);
+                }
+                else
+                {
+                    ConsoleHelper.WriteLine("Your hand slips and you plummet down towards the spikes.", ConsoleColor.DarkRed);
+                    hero.Kill("You have fallen into a pit and died.");
+                }
+            }
+        }
+
+        public override DisplayDetails Display()
+        {
+            return IsActive ? new DisplayDetails($"[{Type.ToString()[0]}]", ConsoleColor.Red)
+                            : base.Display();
+        }
+
+        public override bool DisplaySense(Hero hero, int heroDistance)
+        {
+            if (!IsActive)
+            {
+                base.DisplaySense(hero, heroDistance);
+                if (heroDistance == 0)
+                {
+                    ConsoleHelper.WriteLine("You shudder as you recall your near death experience with the now defunct pit in this room.", ConsoleColor.DarkGray);
+                }
+            }
+            if (heroDistance == 1 && IsActive)
+            {
+                ConsoleHelper.WriteLine("You feel a draft. There is a pit in a nearby room!", ConsoleColor.DarkGray);
+                return true;
+            }
+            else if (heroDistance == 2 && IsActive)
+            {
+                ConsoleHelper.WriteLine("Your intuition tells you that something dangerous is nearby", ConsoleColor.DarkGray);
+                return true;
+            }
+            return false;
+        }
+    }
+}

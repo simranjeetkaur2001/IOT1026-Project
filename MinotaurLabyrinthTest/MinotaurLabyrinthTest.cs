@@ -1,9 +1,9 @@
-﻿using Assignment;
+﻿using MinotaurLabyrinth;
 
-namespace AssignmentTest
+namespace MinotaurLabyrinthTest
 {
     [TestClass]
-    public class AssignmentTests
+    public class Tests
     {
         [TestMethod]
         public void DummyTest()

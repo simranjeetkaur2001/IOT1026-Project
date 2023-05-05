@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Assignment\Assignment.csproj" />
+    <ProjectReference Include="..\MinotaurLabyrinth\MinotaurLabyrinth.csproj" />
   </ItemGroup>
 
 </Project>
