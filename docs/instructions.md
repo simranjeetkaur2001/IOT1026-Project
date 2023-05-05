@@ -61,7 +61,6 @@ Submit a link to the GitHub repo containing your code and provide a summary desc
 |   3    | Needs Improvement: Limited creativity in room/monster design, limited test coverage; less than half of tests pass. |
 |   1    | Poor: Minimal creativity in room/monster design, no tests or minimal tests; none of the tests pass. |
 |   0    | Code does not build in the CI workflow.                                                      |
-                                                    |
 
 ## Class/Method/Variable Naming (10%)
 
