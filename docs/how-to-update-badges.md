@@ -1,4 +1,4 @@
-## To create a status badge for a GitHub workflow, follow the instructions below:
+# To create a status badge for a GitHub workflow, follow the instructions below
 
 1. Go to the **Actions** tab in your GitHub repository, where you will see a list of your workflows.
 
