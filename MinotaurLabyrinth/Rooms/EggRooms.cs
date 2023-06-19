@@ -23,6 +23,9 @@ namespace MinotaurLabyrinth
             {
                 ConsoleHelper.WriteLine("You Found an egg !", ConsoleColor.Yellow);
                 ConsoleHelper.WriteLine("The egg is cracking...........", ConsoleColor.Yellow);
+                ConsoleHelper.WriteLine("Press Enter to Continue...", ConsoleColor.Yellow);
+                Console.ReadLine();
+
 
 
                 var random = new Random();
@@ -33,7 +36,9 @@ namespace MinotaurLabyrinth
                     IsActive = false;
                     ConsoleHelper.WriteLine("Its a Chick, You are Safe... Yayyyyy", ConsoleColor.Green);
                 }else{
-                    ConsoleHelper.WriteLine("Its a Dinasour, You are attacked by a Dinasour..., you are dead.", ConsoleColor.Red);
+                    ConsoleHelper.WriteLine("Its a Dinasour............", ConsoleColor.Red);
+                    IsActive = false;
+                    hero.Kill("You have attacked by Dinasour........");
                 }
 
             }
@@ -46,12 +51,6 @@ namespace MinotaurLabyrinth
                             : base.Display();
         }
 
-        /// <summary>
-        /// Displays sensory information about the riddle room, based on the hero's distance from it.
-        /// </summary>
-        /// <param name="hero">The hero sensing the riddle room.</param>
-        /// <param name="heroDistance">The distance between the hero and the riddle room.</param>
-        /// <returns>Returns true if a message was displayed; otherwise, false.</returns>
         public override bool DisplaySense(Hero hero, int heroDistance)
         {
             if (!IsActive)
@@ -68,7 +67,7 @@ namespace MinotaurLabyrinth
             }
             else if (heroDistance == 1 || heroDistance == 2)
             {
-                ConsoleHelper.WriteLine(heroDistance == 1 ? "You sense a riddle. There is a riddle room nearby!" : "Your intuition tells you that something intriguing is nearby", ConsoleColor.DarkGray);
+                ConsoleHelper.WriteLine(heroDistance == 1 ? "An egg is nearby" : "", ConsoleColor.DarkGray);
                 return true;
             }
             return false;
