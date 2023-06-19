@@ -1,9 +1,9 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace MinotaurLabyrinth
 {
- 
+
     public class EggRoom : Room
     {
         static EggRoom()
@@ -29,13 +29,16 @@ namespace MinotaurLabyrinth
 
 
                 var random = new Random();
-                var list = new List<string>{"Monster", "Chick"};
+                var list = new List<string> { "Monster", "Chick" };
                 int index = random.Next(list.Count);
 
-                if (list[index]=="chick"){
+                if (list[index] == "chick")
+                {
                     IsActive = false;
                     ConsoleHelper.WriteLine("Its a Chick, You are Safe... Yayyyyy", ConsoleColor.Green);
-                }else{
+                }
+                else
+                {
                     ConsoleHelper.WriteLine("Its a Dinasour............", ConsoleColor.Red);
                     IsActive = false;
                     hero.Kill("You have attacked by Dinasour........");

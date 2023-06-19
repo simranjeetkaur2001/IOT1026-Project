@@ -5,10 +5,10 @@
     {
         // Creates a new player that starts at the given location.
         public Hero(Location start) => Location = start;
-        
+
         // Contains all the commands that a player can access.
         public CommandList CommandList { get; } = new CommandList();
-        
+
         // Represents the distance the player can sense danger.
         // Diagonally adjacent squares have a range of 2 from the player.
         public int SenseRange { get; } = 1;

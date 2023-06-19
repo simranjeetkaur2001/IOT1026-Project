@@ -6,7 +6,7 @@ namespace MinotaurLabyrinth
     // Represents the map and what each room is made out of.
     public class Map
     {
-        
+
         // The rooms are stored in a 2D array. A 3D array would allow for multiple levels in the dungeon. 
         private readonly Room[,] _rooms;
 
@@ -111,7 +111,7 @@ namespace MinotaurLabyrinth
             if (IsOnMap(location))
             {
                 _rooms[location.Row, location.Column] = RoomFactory.Instance.BuildRoom(RoomType.EggRoom);
-                }
+            }
         }
 
         // Moves the player to the specified room in the map.
@@ -140,11 +140,11 @@ namespace MinotaurLabyrinth
             return null;
         }
 
-        
 
 
 
-        
+
+
 
         // Displays the map on the console. If the player does not have a map, only their current location is displayed.
         public void Display(Location playerLocation, bool playerHasMap = true, bool debugMode = false)
@@ -183,7 +183,7 @@ namespace MinotaurLabyrinth
                 }
 
 
-                
+
 
                 Console.WriteLine();
             }
