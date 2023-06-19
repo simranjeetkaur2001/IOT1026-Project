@@ -1,4 +1,5 @@
-﻿namespace MinotaurLabyrinth
+﻿
+namespace MinotaurLabyrinth
 {
     // The minotaur labyrinth game. Tracks the progression of a single round of gameplay.
     public class LabyrinthGame
@@ -11,6 +12,7 @@
 
         // Looks up what room type the player is currently in.
         public Room CurrentRoom => Map.GetRoomAtLocation(Hero.Location);
+
         // Initializes a new game round with a specific map and player.
         public LabyrinthGame(Size mapSize, int seed)
         {
@@ -22,6 +24,7 @@
         public void Run()
         {
             Display.ScreenUpdate(Hero, Map);
+
             // This is the game loop. Each turn runs through this while loop once.
             while (!Hero.IsVictorious && Hero.IsAlive)
             {
@@ -29,8 +32,8 @@
                 Console.Clear();
                 if (Hero.IsAlive) // Player did not quit the game
                 {
-                    Location currentLocation = Hero.Location;
                     command.Execute(Hero, Map);
+                    Location currentLocation = Hero.Location;
                     CurrentRoom.Activate(Hero, Map);
                     // If the room interaction moves the player
                     // Activate the room the player has been moved to
@@ -42,6 +45,7 @@
                 }
                 Display.ScreenUpdate(Hero, Map);
             }
+
             if (Hero.IsVictorious)
                 ConsoleHelper.WriteLine("You have claimed the magic sword, and you have escaped with your life!\nYou win!", ConsoleColor.DarkGreen);
             else

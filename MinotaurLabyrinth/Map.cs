@@ -1,8 +1,12 @@
-﻿namespace MinotaurLabyrinth
+﻿using System;
+using System.Collections.Generic;
+
+namespace MinotaurLabyrinth
 {
     // Represents the map and what each room is made out of.
     public class Map
     {
+        
         // The rooms are stored in a 2D array. A 3D array would allow for multiple levels in the dungeon. 
         private readonly Room[,] _rooms;
 
@@ -100,6 +104,48 @@
         // Changes the type of room at a specific spot in the world to a new type.
         public void SetRoomAtLocation(Location location, RoomType roomType) => _rooms[location.Row, location.Column] = RoomFactory.Instance.BuildRoom(roomType);
 
+
+        // Adds a riddle room at the specified location on the map
+        public void AddEggRoom(Location location)
+        {
+            if (IsOnMap(location))
+            {
+                _rooms[location.Row, location.Column] = RoomFactory.Instance.BuildRoom(RoomType.EggRoom);
+                }
+        }
+
+        // Moves the player to the specified room in the map.
+        public void MovePlayerToRoom(Hero player, Room room)
+        {
+            Location roomLocation = FindRoomLocation(room);
+            if (roomLocation != null)
+            {
+                player.Location = roomLocation;
+            }
+        }
+
+        // Finds the location of a specific room in the map.
+        private Location FindRoomLocation(Room room)
+        {
+            for (int i = 0; i < Rows; i++)
+            {
+                for (int j = 0; j < Columns; j++)
+                {
+                    if (_rooms[i, j] == room)
+                    {
+                        return new Location(i, j);
+                    }
+                }
+            }
+            return null;
+        }
+
+        
+
+
+
+        
+
         // Displays the map on the console. If the player does not have a map, only their current location is displayed.
         public void Display(Location playerLocation, bool playerHasMap = true, bool debugMode = false)
         {
@@ -124,6 +170,8 @@
                         {
                             if (room.Type == RoomType.Entrance)
                                 ConsoleHelper.Write(room.Display());
+                            else if (room.Type == RoomType.EggRoom && room.IsActive)
+                                ConsoleHelper.Write("[()]", ConsoleColor.Green);
                             else
                                 ConsoleHelper.Write("[ ]", ConsoleColor.Gray);
                         }
@@ -133,6 +181,10 @@
                         }
                     }
                 }
+
+
+                
+
                 Console.WriteLine();
             }
         }

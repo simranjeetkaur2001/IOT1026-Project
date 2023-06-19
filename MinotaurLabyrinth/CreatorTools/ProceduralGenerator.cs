@@ -144,26 +144,41 @@
                 throw new InvalidOperationException("ProceduralGenerator has not been initialized. Call Initialize() method before using it.");
             }
         }
-    }
 
-    /// <summary>
-    /// An exception class that represents errors that occur during the procedural generation process.
-    /// </summary>
-    public class CreatorException : Exception
-    {
-        public CreatorException() { }
+        /// <summary>
+        /// Represents a riddle room in the labyrinth.
+        /// </summary>
+        public class EggRoom
+        {
+            public string Egg { get; set; }
+            public string Type { get; set; }
 
-        public CreatorException(string message)
-            : base(message)
-        { }
+            public EggRoom(string egg, string type)
+            {
+                Egg = egg;
+                Type = type;
+            }
+        }
 
-        public CreatorException(string message, Exception innerException)
-            : base(message, innerException)
-        { }
+        /// <summary>
+        /// An exception class that represents errors that occur during the procedural generation process.
+        /// </summary>
+        public class CreatorException : Exception
+        {
+            public CreatorException() { }
 
-        public CreatorException(int totalRooms, int usedRooms)
-            : base("Not enough rooms remaining in the labyrinth!\n" +
-                   $"Total rooms: {totalRooms}, Used rooms: {usedRooms}")
-        { }
+            public CreatorException(string message)
+                : base(message)
+            { }
+
+            public CreatorException(string message, Exception innerException)
+                : base(message, innerException)
+            { }
+
+            public CreatorException(int totalRooms, int usedRooms)
+                : base("Not enough rooms remaining in the labyrinth!\n" +
+                       $"Total rooms: {totalRooms}, Used rooms: {usedRooms}")
+            { }
+        }
     }
 }

@@ -1,17 +1,17 @@
 ﻿namespace MinotaurLabyrinth
 {
     /// <summary>
-    /// A static class that provides methods to create and initialize a labyrinth map with various features, such as an entrance, sword, traps, and monsters.
+    /// A static class that provides methods to create and initialize a labyrinth map with various features, such as an entrance, sword, traps, monsters, and riddle rooms.
     /// </summary>
     public static class LabyrinthCreator
     {
         const int ScalingFactor = 16;
         static readonly Dictionary<Size, (int rows, int cols)> _mapSizeDimensions = new()
-    {
-        { Size.Small, (4, 4) },
-        { Size.Medium, (6, 6) },
-        { Size.Large, (8, 8) },
-    };
+        {
+            { Size.Small, (4, 4) },
+            { Size.Medium, (6, 6) },
+            { Size.Large, (8, 8) },
+        };
 
         /// <summary>
         /// Initializes the labyrinth map with the specified size, and creates a new Hero at the entrance location.
@@ -37,7 +37,7 @@
         }
 
         /// <summary>
-        /// Creates a labyrinth map with randomly placed and non-overlapping features, such as the entrance, sword, traps, and monsters.
+        /// Creates a labyrinth map with randomly placed and non-overlapping features, such as the entrance, sword, traps, monsters, and riddle rooms.
         /// </summary>
         /// <param name="map">The Map to be randomized with features.</param>
         /// <returns>The Location of the entrance in the randomized map.</returns>
@@ -47,6 +47,7 @@
             PlaceSword(map, start);
             AddRooms(RoomType.Pit, map);
             InitializeMonsters(map);
+            AddEggRoom(map);
             return start;
         }
 
@@ -108,6 +109,16 @@
             Location minotaurLocation = ProceduralGenerator.GetRandomLocation();
             Room room = map.GetRoomAtLocation(minotaurLocation);
             room.AddMonster(new Minotaur());
+        }
+
+        /// <summary>
+        /// Adds a riddle room to the map at a random location.
+        /// </summary>
+        /// <param name="map">The Map to which the riddle room should be added.</param>
+        private static void AddEggRoom(Map map)
+        {
+            Location eggRoomLocation = ProceduralGenerator.GetRandomLocation();
+            map.SetRoomAtLocation(eggRoomLocation, RoomType.EggRoom);
         }
     }
 }
